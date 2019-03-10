@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ch.spring.mybatis.mapper.UserMapper">
+    <select id="findUserByUserNameAndStatus" resultType="com.ch.spring.mybatis.po.User">
+        select * from users where username=#{username}
+        <if test="#{status==null}">and status ='1'</if>
+    </select>
+    <select id="getAll" resultType="com.ch.spring.mybatis.po.User">
+        select * from users
+    </select>
+
+</mapper>

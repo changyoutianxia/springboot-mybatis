@@ -1,0 +1,54 @@
+
+server:
+  port: 81
+
+spring:
+  application:
+    name: mybatis
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    name: druid
+    druid:
+      driverClass: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/learn?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
+      username: root
+
+      password: mysqllearn
+      #最小连接数
+      minIdle: 1
+      #初始化创建连接数
+      initialSize: 1
+      #最大初始化连接数
+      maxActive: 20
+      #获取连接最大等待时间
+      maxWait: 6000
+      #校验连接是否可用查询sql
+      validationQuery: select 1
+      #校验查询超时时间
+      validationQueryTimeout: 3000
+      #多久检查一次空闲连接
+      timeBetweenEvictionRunsMillis: 6000
+      #连接的最小存活时间
+      minEvictableIdleTimeMillis: 300000
+      #申请连接的时候检查是否可用
+      testOnBorrow: true
+      #归还连接时候检查是否可用
+      testOnReturn: true
+      #申请连接的时候如果空闲时间大于timeBetweenEvictionRunsMillis 执行validationQuery来检查是否有效
+      testWhileIdle: true
+      #拦截器wall 防止sql 注入
+      filter: stat,wall,slf4j
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:mapper/*.xml
+
+#关闭统计多少条数据
+pagehelper:
+  default-count: false
+  support-methods-arguments: true
+
+logging:
+  level:
+    com.ch.spring.mybatis.*: debug
